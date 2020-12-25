@@ -23,13 +23,6 @@ public class Result extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String result=request.getParameter("result");
-		String msg = "";
-		if(result.equals("0")) {
-			msg="正解！";
-		}else {
-			msg="不正解！";
-		}
-
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<!DOCTYPE html>");
@@ -39,7 +32,7 @@ public class Result extends HttpServlet {
 		out.println("<title>結果</title>");
 		out.println("</head>");
 		out.println("<body>");
-		out.println("<p>"+msg+"</p>");
+		out.printf("<p>%s</p>",result.equals("0")? "正解！":"不正解");
 		out.println("<a href='index3.jsp'>戻る</a>");
 		out.println("</body>");
 		out.println("</html>");

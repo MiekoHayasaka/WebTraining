@@ -8,9 +8,9 @@
 </head>
 <body>
 <form action="Result" method="post">
-<label>スペイン語で月曜はLunesである。</label>
-はい<input type="radio" name="result" value="0">
-いいえ<input type="radio" name="result" value="1">
+スペイン語で月曜はLunesである。
+<label><input type="radio" name="result" value="0">はい</label>
+<label><input type="radio" name="result" value="1">いいえ</label>
 <input type="submit" value="送信">
 </form>
 </body>

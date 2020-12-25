@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    String[] names={"足立","石川","宇佐美","大野"};
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,10 +11,9 @@
 </head>
 <body>
 <ol>
-<li>足立
-<li>石川
-<li>宇佐美
-<li>大野
+<% for(String name:names){ %>
+<li><%=name %></li>
+<%} %>
 </ol>
 </body>
 </html>

@@ -9,11 +9,11 @@
 </head>
 <body>
 <table border="1">
-<% int sum=0; %>
+<caption>九九表</caption>
 <% for(int i=1;i<=9;i++){ %>
+<tr>
 <% for(int j=1;j<=9;j++){ %>
-<% sum =i*j; %>
-<tr><td><%=sum %></td>
+<td><%=i*j %></td>
 <%} %>
 </tr>
 <%} %>
