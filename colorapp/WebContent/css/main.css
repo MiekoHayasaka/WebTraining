@@ -1,0 +1,27 @@
+body{
+	display:flex;
+	height:70vh;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+	background:#faf2ff;
+	color:#333;
+}
+form{
+	font-size:5vmin;
+}
+p{
+	font-size:5vmin;
+}
+.red{
+	color:red;
+}
+.green{
+	color:green;
+}
+.blue{
+	color:blue;
+}
+.yellow{
+	color:#dbc602;
+}
