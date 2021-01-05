@@ -149,7 +149,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="docoTsubu" path="/docoTsubu" reloadable="false" source="org.eclipse.jst.jee.server:docoTsubu"/><Context docBase="colorapp" path="/colorapp" reloadable="false" source="org.eclipse.jst.jee.server:colorapp"/><Context docBase="DiceComp" path="/DiceComp" reloadable="false" source="org.eclipse.jst.jee.server:DiceComp"/><Context docBase="Test" path="/Test" reloadable="false" source="org.eclipse.jst.jee.server:Test"/></Host>
+      <Context docBase="docoTsubu" path="/docoTsubu" reloadable="false" source="org.eclipse.jst.jee.server:docoTsubu"/><Context docBase="colorapp" path="/colorapp" reloadable="false" source="org.eclipse.jst.jee.server:colorapp"/><Context docBase="DiceComp" path="/DiceComp" reloadable="false" source="org.eclipse.jst.jee.server:DiceComp"/><Context docBase="Test" path="/Test" reloadable="false" source="org.eclipse.jst.jee.server:Test"/><Context docBase="numapp2" path="/numapp2" reloadable="false" source="org.eclipse.jst.jee.server:numapp2"/><Context docBase="numapp" path="/numapp" reloadable="false" source="org.eclipse.jst.jee.server:numapp"/><Context docBase="joytas6" path="/joytas6" reloadable="false" source="org.eclipse.jst.jee.server:joytas6"/></Host>
     </Engine>
   </Service>
 </Server>
