@@ -3,8 +3,6 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.Servlet;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,8 +28,6 @@ public class CounterServlet extends HttpServlet {
     }
 
 	/**
-	 * @see Servlet#init(ServletConfig)
-	 */
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 
@@ -41,7 +37,7 @@ public class CounterServlet extends HttpServlet {
 
 		System.out.println("init()が実行されました");
 	}
-
+	 */
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
