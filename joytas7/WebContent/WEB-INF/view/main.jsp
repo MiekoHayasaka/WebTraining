@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="model.*,java.util.*"%>
 <%
-List<Product> list=(List<Product>)application.getAttribute("list");
+	List<Product> list=(List<Product>)application.getAttribute("list");
 String err=(String)request.getAttribute("err");
 String msg=(String)request.getAttribute("msg");
 %>
@@ -17,16 +17,24 @@ String msg=(String)request.getAttribute("msg");
 <body>
 <div class="container" style="margin-top:20px;">
 <p>商品を登録してください。</p>
-<% if(err !=null){%>
+<%
+	if(err !=null){
+%>
 <div class="alert alert-danger" role="alert">
-<%=err %>
+<%=err%>
 </div>
-<%} %>
-<% if(msg !=null){%>
+<%
+	}
+%>
+<%
+	if(msg !=null){
+%>
 <div class="alert alert-success" role="alert">
-<%=msg %>
+<%=msg%>
 </div>
-<%} %>
+<%
+	}
+%>
 <form action="/joytas7/main" method="post" >
   <div class="form-group">
     <label for="name">製品名:</label>
@@ -38,10 +46,14 @@ String msg=(String)request.getAttribute("msg");
   </div>
   <button type="submit" class="btn btn-primary">登録</button>
 </form>
-<%if(list != null && list.size()>0){%>
+<%
+	if(list != null && list.size()>0){
+%>
 <table class="table table-striped mt-4">
 <tr><th>製品名</th><th>価格</th><th>登録日</th></tr>
-<%for(Product p:list) {%>
+<%
+	for(Product p:list) {
+%>
 <tr><th><%=p.getName() %></th><td><%=String.format("%,3d円",Integer.parseInt(p.getPrice())) %></td><td><%=p.getUpdated() %></td></tr>
 <%} %>
 </table>

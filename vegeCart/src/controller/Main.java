@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,8 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Product;
-import model.ProductLogic;
+import model.Cart;
+import model.CartLogic;
+import model.Vegetable;
 
 @WebServlet("/main")
 public class Main extends HttpServlet {
@@ -25,25 +24,24 @@ public class Main extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		List<Product> list=(List<Product>)session.getAttribute("list");
-		if(list == null){
-			list=new ArrayList<>();
-		}
 		request.setCharacterEncoding("UTF-8");
 		String name=request.getParameter("name");
 		String price=request.getParameter("price");
 		if(name.isEmpty() || price.isEmpty()){
 			request.setAttribute("err","未記入の項目があります！");
 		}else{
-			Product product=new Product(name,price);
-			list.add(0,product);
-			session.setAttribute("list", list);
+			HttpSession session = request.getSession();
+			Cart cart=(Cart)session.getAttribute("cart");
+			if(cart==null) {
+				cart=new Cart();
+			}
+			Vegetable vege=new Vegetable(name,Integer.parseInt(price));
+			CartLogic logic=new CartLogic();
+			logic.execute(cart, vege);
+			session.setAttribute("cart", cart);
 			request.setAttribute("msg",name+"を追加しました。");
-			ProductLogic logic = new ProductLogic();
-			logic.execute(list);
 		}
-		this.doGet(request,response);
+		doGet(request,response);
 	}
 }
 
