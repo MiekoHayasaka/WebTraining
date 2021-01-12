@@ -5,7 +5,7 @@
 //セッションスコープに保存されたユーザー情報を取得
 User loginUser = (User)session.getAttribute("loginUser");
 //アプリケーションスコープに保存されたつぶやきリストを取得
-List<Mutter> mutterList=(List<Mutter>)application.getAttribute("mutterList");
+List<Mutter> list=(List<Mutter>)request.getAttribute("list");
 //リクエストスコープに保存されたエラーメッセージを取得
 String errorMsg = (String)request.getAttribute("errorMsg");
 %>
@@ -28,7 +28,7 @@ String errorMsg = (String)request.getAttribute("errorMsg");
 <% if(errorMsg != null){ %>
 <p><%= errorMsg %></p>
 <%} %>
-<% for(Mutter mutter : mutterList){ %>
+<% for(Mutter mutter : list){ %>
 <p><%= mutter.getUserName() %>:<%= mutter.getText() %></p>
 <% } %>
 </body>
