@@ -1,8 +1,16 @@
 package model;
 
-public class Health {
+import java.io.Serializable;
+
+public class Health implements Serializable{
 	private double height,weight,bmi;
 	private String bodyType;
+
+	public Health() {}
+	public Health(double height,double weight) {
+		this.height=height;
+		this.weight=weight;
+	}
 	public double getHeight() {
 		return height;
 	}

@@ -1,4 +1,4 @@
-package servlet;
+package controller;
 
 import java.io.IOException;
 
@@ -12,17 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 import model.Health;
 import model.HealthCheckLogic;
 
-
 /**
- * Servlet implementation class HealthCheck
+ * Servlet implementation class Main
  */
-@WebServlet("/HealthCheck")
-public class HealthCheck extends HttpServlet {
+@WebServlet("/Main")
+public class Main extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// フォワード
-		RequestDispatcher dp = request.getRequestDispatcher("/WEB-INF/jsp/healthCheck.jsp");
-		dp.forward(request, response);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/form.jsp");
+		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,9 +29,7 @@ public class HealthCheck extends HttpServlet {
 		String height=request.getParameter("height");
 
 		//入力値をプロパティに設定
-		Health health=new Health();
-		health.setHeight(Double.parseDouble(height));
-		health.setWeight(Double.parseDouble(weight));
+		Health health=new Health(Double.parseDouble(height),Double.parseDouble(weight));
 
 		//健康診断を実行し結果を設定
 		HealthCheckLogic hc=new HealthCheckLogic();
@@ -43,7 +39,7 @@ public class HealthCheck extends HttpServlet {
 		request.setAttribute("health", health);
 
 		//フォワード
-		RequestDispatcher dp=request.getRequestDispatcher("/WEB-INF/jsp/healthCheckResult.jsp");
+		RequestDispatcher dp=request.getRequestDispatcher("/WEB-INF/view/result.jsp");
 		dp.forward(request, response);
 	}
 
