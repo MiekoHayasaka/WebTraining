@@ -37,6 +37,7 @@ public class Admin extends HttpServlet {
 		part.write(path+File.separator+imgname);
 		DonutDAO dao=new DonutDAO();
 		dao.insertOne(new Donut(name,price,imgname));
+		request.setAttribute("msg", "１件登録しました");
 		doGet(request,response);
 	}
 
