@@ -1,26 +1,29 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Task implements Serializable{
 	private int id;
 	private String name; // タスク名
-	private int num; // 1～31
+	private int room_id;
+	private int day; // 1～31
 	private String period; // 日、週、ケ月、年
 	private int season; // 期間限定（１月～１２月）
-	//private int frequency; // 入力されたnum,periodから日数を取得
-	private int importance; // 重要度
+	private Date updated;
+	private int frequency; // 入力されたday,periodから日数を取得
+	//private int importance; // 重要度
 
 	public Task() {}
-	public Task(String name,int num,String period,int season,int importance) {
+	public Task(String name,int day,String period,int room_id) {
 		this.name=name;
-		this.num=num;
+		this.day=day;
 		this.period=period;
-		this.season=season;
-		this.importance=importance;
+		this.room_id=room_id;
+		//this.importance=importance;
 	}
-	public Task(int id,String name,int num,String period,int season,int importance) {
-		this(name,num,period,season,importance);
+	public Task(int id,String name,int day,String period,int room_id) {
+		this(name,day,period,room_id);
 		this.id=id;
 	}
 	public int getId() {
@@ -35,12 +38,6 @@ public class Task implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getNum() {
-		return num;
-	}
-	public void setNum(int num) {
-		this.num = num;
-	}
 	public String getPeriod() {
 		return period;
 	}
@@ -53,11 +50,30 @@ public class Task implements Serializable{
 	public void setSeason(int season) {
 		this.season = season;
 	}
-	public int getImportance() {
-		return importance;
+	public int getRoom_id() {
+		return room_id;
 	}
-	public void setImportance(int importance) {
-		this.importance = importance;
+	public void setRoom_id(int room_id) {
+		this.room_id = room_id;
 	}
+	public int getDay() {
+		return day;
+	}
+	public void setDay(int day) {
+		this.day = day;
+	}
+	public Date getUpdated() {
+		return updated;
+	}
+	public void setUpdated(Date updated) {
+		this.updated = updated;
+	}
+	public int getFrequency() {
+		return frequency;
+	}
+	public void setFrequency(int frequency) {
+		this.frequency = frequency;
+	}
+
 
 }
