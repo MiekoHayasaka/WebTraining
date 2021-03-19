@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.naming.Context;
@@ -55,8 +54,8 @@ public class TaskDAO {
 				String name = rs.getString("name");
 				int day = rs.getInt("day");
 				String period = rs.getString("period");
-				int room_id = rs.getInt("room_id")
-				Date updated = new Date();
+				int room_id = rs.getInt("room_id");
+				//Date updated = new Date();
 				//int season = rs.getInt("season");
 				//int importance = rs.getInt("importance");
 				Task task = new Task(id,name,day,period,room_id);
@@ -73,9 +72,12 @@ public class TaskDAO {
 	public void insertOne(Task task) {
 		try {
 			this.connect();
-			ps=db.prepareStatement("INSERT INTO tasks(name,day,period,updated) VALUES(?,?)");
+			ps=db.prepareStatement("INSERT INTO tasks(name,day,period,room_id,updated) VALUES(?,?,?,?,?)");
 			ps.setString(1, task.getName());
 			ps.setInt(2, task.getDay());
+			ps.setString(3, task.getPeriod());
+			ps.setInt(4, task.getRoom_id());
+			ps.setDate(5, task.getUpdated());
 			ps.executeUpdate();
 		} catch (NamingException e) {
 			e.printStackTrace();
@@ -95,11 +97,10 @@ public class TaskDAO {
 			rs=ps.executeQuery();
 			if(rs.next()) {
 				String name=rs.getString("name");
-				int num = rs.getInt("num");
+				int day = rs.getInt("day");
 				String period = rs.getString("period");
-				int season = rs.getInt("season");
-				int importance=rs.getInt("importance");
-				task=new Task(id,name,num,period,season,importance);
+				int room_id = rs.getInt("room_id");
+				task=new Task(id,name,day,period,room_id);
 			}
 		} catch (NamingException | SQLException e) {
 			e.printStackTrace();
@@ -112,13 +113,11 @@ public class TaskDAO {
 	public void updateOne(Task task) {
 		try {
 			this.connect();
-			ps=db.prepareStatement("UPDATE tasks SET name=?,num=?,period=?,season=?,importance=? WHERE id=?");
+			ps=db.prepareStatement("UPDATE tasks SET name=?,day=?,period=? WHERE id=?");
 			ps.setString(1, task.getName());
-			ps.setInt(2, task.getNum());
+			ps.setInt(2, task.getDay());
 			ps.setString(3, task.getPeriod());
-			ps.setInt(4, task.getSeason());
-			ps.setInt(5, task.getImportance());
-			ps.setInt(6, task.getId());
+			ps.setInt(4, task.getId());
 			ps.executeUpdate();
 		} catch (NamingException | SQLException e) {
 			e.printStackTrace();

@@ -1,7 +1,8 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Date;
+//import java.util.Date;
+import java.sql.Date;
 
 public class Task implements Serializable{
 	private int id;
@@ -11,16 +12,26 @@ public class Task implements Serializable{
 	private String period; // 日、週、ケ月、年
 	private int season; // 期間限定（１月～１２月）
 	private Date updated;
+	//private Calendar calendar;
 	private int frequency; // 入力されたday,periodから日数を取得
 	//private int importance; // 重要度
 
 	public Task() {}
+	public Task(String name,int room_id) {
+		this.name=name;
+		this.room_id=room_id;
+
+	}
 	public Task(String name,int day,String period,int room_id) {
 		this.name=name;
 		this.day=day;
 		this.period=period;
 		this.room_id=room_id;
 		//this.importance=importance;
+	}
+	public Task(String name,int day,String period,int room_id, Date updated) {
+		this(name,day,period,room_id);
+		this.updated=updated;
 	}
 	public Task(int id,String name,int day,String period,int room_id) {
 		this(name,day,period,room_id);

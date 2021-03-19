@@ -10,30 +10,38 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.RoomDAO;
-import model.Room;
+import dao.TaskDAO;
+import model.Task;
 
 /**
- * Servlet implementation class Read
+ * Servlet implementation class CreateTask
  */
-@WebServlet("/Read")
-public class Read extends HttpServlet {
+@WebServlet("/CreateTask")
+public class CreateTask extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RoomDAO dao = new RoomDAO();
-		List<Room> list=dao.findAll();
+		TaskDAO dao = new TaskDAO();
+		List<Task> list=dao.findAll();
 		request.setAttribute("list", list);
 		RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/view/create.jsp");
-		//RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/view/read.jsp");
 		rd.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		String name=request.getParameter("name");
+		//String day=request.getParameter("day");
+		//String period=request.getParameter("period");
+		String room_id=request.getParameter("room_id");
+		//Calendar calendar = Calendar.getInstance();
+		//Date updated=new Date();
+		//Task task=new Task(name,Integer.parseInt(day),period,Integer.parseInt(room_id),(java.sql.Date) updated);
+		Task task=new Task(name,Integer.parseInt(room_id));
+		TaskDAO dao=new TaskDAO();
+		dao.insertOne(task);
+
+		response.sendRedirect("/CleanUp/Read");
 	}
 
 }
