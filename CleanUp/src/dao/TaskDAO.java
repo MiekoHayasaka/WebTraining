@@ -47,6 +47,7 @@ public class TaskDAO {
 		List<Task> list = new ArrayList<>();
 		try {
 			this.connect();
+			//ps=db.prepareStatement("SELECT * FROM tasks WHERE room_id=? ");
 			ps=db.prepareStatement("SELECT * FROM tasks");
 			rs=ps.executeQuery();
 			while(rs.next()) {
@@ -59,6 +60,33 @@ public class TaskDAO {
 				//int season = rs.getInt("season");
 				//int importance = rs.getInt("importance");
 				Task task = new Task(id,name,day,period,room_id);
+				list.add(task);
+			}
+		} catch (NamingException | SQLException e) {
+			e.printStackTrace();
+		}finally {
+			this.disconnect();
+		}
+		return list;
+	}
+
+	public List<Task> findRoom(int room_id){
+		List<Task> list = new ArrayList<>();
+		try {
+			this.connect();
+			ps=db.prepareStatement("SELECT * FROM tasks WHERE room_id=? ");
+			ps.setInt(1, room_id);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				int day = rs.getInt("day");
+				String period = rs.getString("period");
+				//int room_id = rs.getInt("room_id");
+				//Date updated = new Date();
+				//int season = rs.getInt("season");
+				//int importance = rs.getInt("importance");
+				Task task = new Task(id,name,day,period);
 				list.add(task);
 			}
 		} catch (NamingException | SQLException e) {

@@ -20,7 +20,7 @@
     <nav>
         <a href="index.jsp">つかい方</a>
         <a href="/CleanUp/Create">おそうじ登録</a>
-        <a href="/CleanUp/Read">一覧表示</a>
+        <a href="">一覧表示</a>
         <a href="">完了・編集</a>
         <a href="">過去の記録</a>
     </nav>
@@ -53,7 +53,6 @@
           </section>
         </div>
       </section>
-
     </div>
     <footer>
       &copy;CleanUpProject

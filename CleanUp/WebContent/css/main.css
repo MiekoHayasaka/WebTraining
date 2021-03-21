@@ -69,7 +69,28 @@ h2 + p{
   margin:0 auto 20px;
   text-align: center;
 }
+h3{
+	text-align: center;
+  font-size:1rem;
 
+}
+
+
+table{
+  width:90%;
+  margin:0 auto;
+  border-collapse: collapse;
+}
+table *{
+  border:1px solid #ddd;text-align: center;
+}
+table thead tr{
+  background:#3cb371;
+  color:white;
+}
+table tbody tr:nth-child(even){
+  background-color: #ffffff;
+}
 
 #infoBox{
    display: flex;
@@ -141,7 +162,7 @@ h2 + p{
 
 footer{
   text-align: center;
-  padding:10px 0;
+  padding:5px 0;
   background:#228b22;
   color:white;
 }

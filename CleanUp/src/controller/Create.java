@@ -35,7 +35,8 @@ public class Create extends HttpServlet {
 		RoomDAO dao=new RoomDAO();
 		dao.insertOne(room);
 
-		response.sendRedirect("/CleanUp/Read");
+		//response.sendRedirect("/CleanUp/Read");
+		doGet(request, response);
 	}
 
 }
