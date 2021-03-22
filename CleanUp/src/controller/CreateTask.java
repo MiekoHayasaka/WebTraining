@@ -39,14 +39,15 @@ public class CreateTask extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// タスクの登録
 		request.setCharacterEncoding("UTF-8");
 		String name=request.getParameter("name");
 		String day=request.getParameter("day");
 		String period=request.getParameter("period");
 		String room_id=request.getParameter("room_id");
+		// 今日の日付を取得
 		Date udate=new Date();
 		java.sql.Date updated = new java.sql.Date(udate.getTime());
+		// タスクの登録
 		Task task=new Task(name,Integer.parseInt(day),period,Integer.parseInt(room_id),updated);
 		TaskDAO dao=new TaskDAO();
 		dao.insertOne(task);

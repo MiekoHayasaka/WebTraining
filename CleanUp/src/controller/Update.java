@@ -46,12 +46,13 @@ public class Update extends HttpServlet {
 		String day=request.getParameter("day");
 		String period=request.getParameter("period");
 		String id=request.getParameter("id");
-		Task task=new Task(Integer.parseInt(id),name,Integer.parseInt(day),period);
+		String room_id=request.getParameter("room_id");
+		Task task=new Task(Integer.parseInt(id),name,Integer.parseInt(day),period,Integer.parseInt(room_id));
 		TaskDAO dao=new TaskDAO();
 		dao.updateOne(task);
 
 		// 更新した掃除場所の取得
-		String room_id=request.getParameter("room_id");
+		//String room_id=request.getParameter("room_id");
 		String rname=request.getParameter("rname");
 		Room room=new Room(Integer.parseInt(room_id),rname);
 		request.setAttribute("room", room);

@@ -34,7 +34,7 @@
 <input type="hidden" name="room_id" value="<%=room.getId() %>">
 <input type="hidden" name="rname" value="<%=room.getName() %>">
 <input type="text" name="name" size=30 placeholder="タスクの入力">
-<input type="number" name="day" placeholder="数字"></td>
+<input type="number" name="day" min="1" max="31" placeholder="日数">
 <select name="period">
 <option value="日">日</option>
 <option value="週">週</option>
@@ -43,7 +43,6 @@
 </select>毎
 <button type="submit">タスク登録</button>
 </form>
-
 <hr>
 <h3>今の状態</h3>
 <% if(list != null && list.size() > 0){ %>
@@ -53,10 +52,13 @@
 </thead>
 <tbody>
 <%for(Task t:list){ %>
+<form action="/CleanUp/Read" method="post">
+<input type="hidden" name="updated" value="<%=t.getUpdated()%>">
 <tr><td><%=t.getName() %></td>
 <td><%=t.getDay() %> <%=t.getPeriod() %>毎</td>
 <td></td>
-<td></td>
+<td><button type="submit">完了！</button></td>
+</form>
 <td><a href="/CleanUp/Update?id=<%=t.getId() %>&room_id=<%=room.getId()%>">更新</a></td>
 <td><a href="/CleanUp/Delete?id=<%=t.getId() %>&room_id=<%=room.getId()%>&rname=<%=room.getName()%>" onclick="return confirm('[<%=t.getName()%>]を削除してよろしいですか？');">削除</a>
 </td>

@@ -62,7 +62,7 @@
 <td><a href="/CleanUp/CreateTask?room_id=<%=r.getId()%>&rname=<%=r.getName()%>">
 <%=r.getName() %></a></td>
 <td><input type="text" name="name" size=30 placeholder="タスクの入力">
-<input type="number" name="day" placeholder="数字">
+<input type="number" name="day" min="1" max="31" placeholder="日数">
 <select name="period">
 <option value="日">日</option>
 <option value="週">週</option>

@@ -17,17 +17,7 @@ public class Task implements Serializable{
 	//private int importance; // 重要度
 
 	public Task() {}
-/*	public Task(String name,int room_id) {
-		this.name=name;
-		this.room_id=room_id;
-	}
-
-	public Task(String name,int day,String period) {
-		this.name=name;
-		this.day=day;
-		this.period=period;
-	}
-	*/
+/*
 	public Task(String name,int day,String period,int room_id) {
 		this.name=name;
 		this.day=day;
@@ -35,18 +25,25 @@ public class Task implements Serializable{
 		this.room_id=room_id;
 		//this.importance=importance;
 	}
+	*/
+	// 登録時
 	public Task(String name,int day,String period,int room_id, Date updated) {
-		this(name,day,period,room_id);
+		this.name=name;
+		this.day=day;
+		this.period=period;
+		this.room_id=room_id;
 		this.updated=updated;
 	}
-	public Task(int id,String name,int day,String period) {
+	// 更新時
+	public Task(int id,String name,int day,String period,int room_id) {
 		this.id=id;
 		this.name=name;
 		this.day=day;
 		this.period=period;
 	}
-	public Task(int id,String name,int day,String period,int room_id) {
-		this(name,day,period,room_id);
+	// 一覧表示
+	public Task(int id,String name,int day,String period,int room_id,Date updated) {
+		this(name,day,period,room_id,updated);
 		this.id=id;
 	}
 	public int getId() {
