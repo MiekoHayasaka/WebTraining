@@ -52,11 +52,13 @@
 </thead>
 <tbody>
 <%for(Task t:list){ %>
-<form action="/CleanUp/Read" method="post">
-<input type="hidden" name="updated" value="<%=t.getUpdated()%>">
+<form action="/CleanUp/Complete" method="post">
+<input type="hidden" name="status" value="<%=t.getStatus()%>">
+<input type="hidden" name="id" value="<%=t.getId()%>">
+<input type="hidden" name="room_id" value="<%=room.getId()%>">
 <tr><td><%=t.getName() %></td>
 <td><%=t.getDay() %> <%=t.getPeriod() %>毎</td>
-<td></td>
+<td><%=t.getStatus()%>日</td>
 <td><button type="submit">完了！</button></td>
 </form>
 <td><a href="/CleanUp/Update?id=<%=t.getId() %>&room_id=<%=room.getId()%>">更新</a></td>

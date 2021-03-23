@@ -6,10 +6,11 @@ import java.sql.Date;
 
 public class CalendarLogic  implements Serializable{
 
-	public Date CurrentDate(Date updated) {
+	public int Status(int day,String period,Date updated) {
+		int status=0;
 		java.util.Date udate=new java.util.Date();
 		updated = new Date(udate.getTime());
-		return updated;
+		return status;
 	}
 
 }

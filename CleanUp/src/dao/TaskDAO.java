@@ -140,15 +140,32 @@ public class TaskDAO {
 		return task;
 	}
 
+	// タスクの更新
 	public void updateOne(Task task) {
 		try {
 			this.connect();
-			ps=db.prepareStatement("UPDATE tasks SET name=?,day=?,period=? updated=? WHERE id=?");
+			ps=db.prepareStatement("UPDATE tasks SET name=?,day=?,period=? status=? WHERE id=?");
 			ps.setString(1, task.getName());
 			ps.setInt(2, task.getDay());
 			ps.setString(3, task.getPeriod());
-			ps.setDate(4, task.getUpdated());
+			ps.setInt(4, task.getStatus());
 			ps.setInt(5, task.getId());
+			ps.executeUpdate();
+		} catch (NamingException | SQLException e) {
+			e.printStackTrace();
+		}finally {
+			this.disconnect();
+		}
+	}
+
+	// 掃除完了時のタスク更新
+	public void updateStatus(Task task) {
+		try {
+			this.connect();
+			ps=db.prepareStatement("UPDATE tasks SET updated=? status=? WHERE id=?");
+			ps.setDate(1, task.getUpdated());
+			ps.setInt(2, task.getStatus());
+			ps.setInt(3, task.getId());
 			ps.executeUpdate();
 		} catch (NamingException | SQLException e) {
 			e.printStackTrace();

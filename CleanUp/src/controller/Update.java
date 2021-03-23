@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.RoomDAO;
 import dao.TaskDAO;
+import model.CalendarLogic;
 import model.Room;
 import model.Task;
 
@@ -23,10 +25,16 @@ public class Update extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String room_id=request.getParameter("room_id");
 		String s_id=request.getParameter("id");
 		if(s_id == null) {
-			response.sendRedirect("/CleanUp/CreateTask");
+			String rname=request.getParameter("rname");
+			//Room room=new Room(Integer.parseInt(room_id),rname);
+			request.setAttribute("room_id", room_id);
+			request.setAttribute("rname", rname);
+			RequestDispatcher rd=request.getRequestDispatcher("/CleanUp/CreateTask");
+			rd.forward(request, response);
 		}else {
 			RoomDAO rdao=new RoomDAO();
 			Room room = rdao.findOne(Integer.parseInt(room_id));
@@ -40,19 +48,26 @@ public class Update extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// タスクの更新
+		// タスクのデータ取得
 		request.setCharacterEncoding("UTF-8");
-		String name=request.getParameter("name");
-		String day=request.getParameter("day");
-		String period=request.getParameter("period");
-		String id=request.getParameter("id");
-		String room_id=request.getParameter("room_id");
-		Task task=new Task(Integer.parseInt(id),name,Integer.parseInt(day),period,Integer.parseInt(room_id));
+		String s_id=request.getParameter("id");
+		int id=Integer.parseInt(s_id);
 		TaskDAO dao=new TaskDAO();
+		Task task = dao.findOne(id);
+
+		// タスクの更新
+		String name=request.getParameter("name");
+		String s_day=request.getParameter("day");
+		int day=Integer.parseInt(s_day);
+		String period=request.getParameter("period");
+		Date updated=task.getUpdated();
+		CalendarLogic cl=new CalendarLogic();
+		int status=cl.Status(day,period,updated);
+		task=new Task(id,name,day,period,status);
 		dao.updateOne(task);
 
 		// 更新した掃除場所の取得
-		//String room_id=request.getParameter("room_id");
+		String room_id=request.getParameter("room_id");
 		String rname=request.getParameter("rname");
 		Room room=new Room(Integer.parseInt(room_id),rname);
 		request.setAttribute("room", room);

@@ -45,6 +45,8 @@ case "年": %>
 <% break;}%>
 </select>毎
 <input type="hidden" name="id" value="<%=task.getId() %>">
+<input type="hidden" name="updated" value="<%=task.getUpdated() %>">
+<input type="hidden" name="status" value="<%=task.getStatus() %>">
 <input type="hidden" name="room_id" value="<%=room.getId() %>">
 <input type="hidden" name="rname" value="<%=room.getName() %>">
 <button type="submit">更新</button>

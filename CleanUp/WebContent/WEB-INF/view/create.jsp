@@ -51,7 +51,7 @@
 <% if(list != null && list.size() > 0){ %>
 <table>
 <thead>
-<tr><th>お掃除場所</th><th>タスクの追加</th></tr>
+<tr><th>お掃除場所</th><th>タスクの追加</th><th></th></tr>
 </thead>
 <tbody>
 <%for(Room r:list){ %>
@@ -68,8 +68,8 @@
 <option value="週">週</option>
 <option value="カ月">カ月</option>
 <option value="年">年</option>
-</select>毎
-<button type="submit">登録</button></td>
+</select>毎</td>
+<td><button type="submit">登録</button></td>
 </tr>
 </form>
 <%} %>

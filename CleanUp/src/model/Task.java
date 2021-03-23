@@ -13,39 +13,34 @@ public class Task implements Serializable{
 	private int season; // 期間限定（１月～１２月）
 	private Date updated;
 	//private Calendar calendar;
-	private int frequency; // 入力されたday,periodから日数を取得
+	private int status; // 次回掃除予定日までの日数
 	//private int importance; // 重要度
 
 	public Task() {}
-/*
-	public Task(String name,int day,String period,int room_id) {
-		this.name=name;
-		this.day=day;
-		this.period=period;
-		this.room_id=room_id;
-		//this.importance=importance;
-	}
-	*/
+
 	// 登録時
-	public Task(String name,int day,String period,int room_id, Date updated) {
+	public Task(String name,int day,String period,int room_id, Date updated,int status) {
 		this.name=name;
 		this.day=day;
 		this.period=period;
 		this.room_id=room_id;
 		this.updated=updated;
+		this.status=status;
+	}
+	// 一覧表示
+	public Task(int id,String name,int day,String period,int room_id,Date updated,int status) {
+		this(name,day,period,room_id,updated,status);
+		this.id=id;
 	}
 	// 更新時
-	public Task(int id,String name,int day,String period,int room_id) {
+	public Task(int id,String name,int day,String period,int status) {
 		this.id=id;
 		this.name=name;
 		this.day=day;
 		this.period=period;
+		this.status=status;
 	}
-	// 一覧表示
-	public Task(int id,String name,int day,String period,int room_id,Date updated) {
-		this(name,day,period,room_id,updated);
-		this.id=id;
-	}
+
 	public int getId() {
 		return id;
 	}
@@ -88,11 +83,11 @@ public class Task implements Serializable{
 	public void setUpdated(Date updated) {
 		this.updated = updated;
 	}
-	public int getFrequency() {
-		return frequency;
+	public int getStatus() {
+		return status;
 	}
-	public void setFrequency(int frequency) {
-		this.frequency = frequency;
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 
