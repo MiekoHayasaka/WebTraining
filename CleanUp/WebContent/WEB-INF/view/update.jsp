@@ -22,25 +22,25 @@ Task task=(Task)request.getAttribute("task");
 case "日":%>
 <option value="日" selected>日</option>
 <option value="週">週</option>
-<option value="カ月">カ月</option>
+<option value="ケ月">ケ月</option>
 <option value="年">年</option>
 <% break;
 case "週": %>
 <option value="日">日</option>
 <option value="週" selected>週</option>
-<option value="カ月">カ月</option>
+<option value="ケ月">ケ月</option>
 <option value="年">年</option>
 <% break;
-case "カ月": %>
+case "ケ月": %>
 <option value="日">日</option>
 <option value="週">週</option>
-<option value="カ月" selected>カ月</option>
+<option value="ケ月" selected>カ月</option>
 <option value="年">年</option>
 <% break;
 case "年": %>
 <option value="日">日</option>
 <option value="週">週</option>
-<option value="カ月">カ月</option>
+<option value="ケ月">カ月</option>
 <option value="年" selected>年</option>
 <% break;}%>
 </select>毎

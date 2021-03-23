@@ -30,8 +30,11 @@ public class Complete extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 次回掃除予定日の更新
 		String s_id=request.getParameter("id");
+		int id=Integer.parseInt(s_id);
 		TaskDAO dao=new TaskDAO();
-		Task task=dao.findOne(Integer.parseInt(s_id));
+		Task task=dao.findOne(id);
+		int day=task.getDay();
+		String period=task.getPeriod();
 		java.sql.Date updated=task.getUpdated();
 		CalendarLogic cl=new CalendarLogic();
 		int status=cl.Status(day,period,updated);
@@ -41,7 +44,7 @@ public class Complete extends HttpServlet {
 		Date udate=new Date();
 		java.sql.Date sdate = new java.sql.Date(udate.getTime());
 		//Task task=new Task();
-		task.setId(Integer.parseInt(s_id));
+		task.setId(id);
 		task.setUpdated(sdate);
 		// タスクの更新
 		//TaskDAO dao=new TaskDAO();

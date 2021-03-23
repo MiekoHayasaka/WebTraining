@@ -26,7 +26,7 @@ Room room=(Room)request.getAttribute("room");
 <select name="period">
 <option value="日">日</option>
 <option value="週">週</option>
-<option value="月">月</option>
+<option value="ケ月">ケ月</option>
 <option value="年">年</option>
 </select>
 <button type="submit">登録</button>

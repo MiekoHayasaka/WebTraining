@@ -38,7 +38,7 @@
 <select name="period">
 <option value="日">日</option>
 <option value="週">週</option>
-<option value="カ月">カ月</option>
+<option value="ケ月">ケ月</option>
 <option value="年">年</option>
 </select>毎
 <button type="submit">タスク登録</button>
@@ -48,14 +48,12 @@
 <% if(list != null && list.size() > 0){ %>
 <table>
 <thead>
-<tr><th>タスク名</th><th>掃除の間隔</th><th>予定日まであと</th><th>掃除完了</th><th>更新</th><th>削除</th></tr>
+<tr><th>タスク</th><th>掃除の間隔</th><th>予定日まで</th><th>掃除完了</th><th>更新</th><th>削除</th></tr>
 </thead>
 <tbody>
 <%for(Task t:list){ %>
 <form action="/CleanUp/Complete" method="post">
-<input type="hidden" name="status" value="<%=t.getStatus()%>">
 <input type="hidden" name="id" value="<%=t.getId()%>">
-<input type="hidden" name="room_id" value="<%=room.getId()%>">
 <tr><td><%=t.getName() %></td>
 <td><%=t.getDay() %> <%=t.getPeriod() %>毎</td>
 <td><%=t.getStatus()%>日</td>

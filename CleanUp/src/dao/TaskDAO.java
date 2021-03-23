@@ -43,7 +43,7 @@ public class TaskDAO {
 			e.printStackTrace();
 		}
 	}
-
+/*
 	public List<Task> findAll(){
 		List<Task> list = new ArrayList<>();
 		try {
@@ -70,7 +70,7 @@ public class TaskDAO {
 		}
 		return list;
 	}
-
+*/
 	// タスクの一覧表示（場所毎）
 	public List<Task> findRoom(int room_id){
 		List<Task> list = new ArrayList<>();
@@ -85,9 +85,10 @@ public class TaskDAO {
 				int day = rs.getInt("day");
 				String period = rs.getString("period");
 				Date updated = rs.getDate("updated");
+				int status = rs.getInt("status");
 				//int season = rs.getInt("season");
 				//int importance = rs.getInt("importance");
-				Task task = new Task(id,name,day,period,room_id,updated);
+				Task task = new Task(id,name,day,period,room_id,updated,status);
 				list.add(task);
 			}
 		} catch (NamingException | SQLException e) {
@@ -130,7 +131,8 @@ public class TaskDAO {
 				String period = rs.getString("period");
 				int room_id = rs.getInt("room_id");
 				Date updated = rs.getDate("updated");
-				task=new Task(id,name,day,period,room_id,updated);
+				int status = rs.getInt("status");
+				task=new Task(id,name,day,period,room_id,updated,status);
 			}
 		} catch (NamingException | SQLException e) {
 			e.printStackTrace();
