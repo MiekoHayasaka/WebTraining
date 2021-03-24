@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.RoomDAO;
 import dao.TaskDAO;
 import model.CalendarLogic;
 import model.Room;
@@ -28,32 +29,30 @@ public class Complete extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 次回掃除予定日の更新
-		String s_id=request.getParameter("id");
-		int id=Integer.parseInt(s_id);
+		// タスクのデータ取得
+		String id=request.getParameter("id");
 		TaskDAO dao=new TaskDAO();
-		Task task=dao.findOne(id);
+		Task task=dao.findOne(Integer.parseInt(id));
 		int day=task.getDay();
 		String period=task.getPeriod();
-		java.sql.Date updated=task.getUpdated();
-		CalendarLogic cl=new CalendarLogic();
-		int status=cl.Status(day,period,updated);
-		task.setStatus(status);
+		//java.sql.Date updated=task.getUpdated();
 
 		// 今日の日付を取得
 		Date udate=new Date();
-		java.sql.Date sdate = new java.sql.Date(udate.getTime());
-		//Task task=new Task();
-		task.setId(id);
-		task.setUpdated(sdate);
-		// タスクの更新
-		//TaskDAO dao=new TaskDAO();
+		java.sql.Date updated = new java.sql.Date(udate.getTime());
+
+		// ステータスの更新
+		CalendarLogic cl=new CalendarLogic();
+		int status=cl.Status(day,period,updated);
+		task.setStatus(status);
+		//task.setStatus(4);
+		task.setUpdated(updated);
 		dao.updateStatus(task);
 
-		// 更新した掃除場所の取得
+		// 掃除場所の取得
 		String room_id=request.getParameter("room_id");
-		String rname=request.getParameter("rname");
-		Room room=new Room(Integer.parseInt(room_id),rname);
+		RoomDAO rdao=new RoomDAO();
+		Room room = rdao.findOne(Integer.parseInt(room_id));
 		request.setAttribute("room", room);
 
 		// タスクの一覧表示

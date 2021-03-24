@@ -146,7 +146,7 @@ public class TaskDAO {
 	public void updateOne(Task task) {
 		try {
 			this.connect();
-			ps=db.prepareStatement("UPDATE tasks SET name=?,day=?,period=? status=? WHERE id=?");
+			ps=db.prepareStatement("UPDATE tasks SET name=?,day=?,period=?, status=? WHERE id=?");
 			ps.setString(1, task.getName());
 			ps.setInt(2, task.getDay());
 			ps.setString(3, task.getPeriod());
@@ -164,7 +164,7 @@ public class TaskDAO {
 	public void updateStatus(Task task) {
 		try {
 			this.connect();
-			ps=db.prepareStatement("UPDATE tasks SET updated=? status=? WHERE id=?");
+			ps=db.prepareStatement("UPDATE tasks SET updated=?, status=? WHERE id=?");
 			ps.setDate(1, task.getUpdated());
 			ps.setInt(2, task.getStatus());
 			ps.setInt(3, task.getId());

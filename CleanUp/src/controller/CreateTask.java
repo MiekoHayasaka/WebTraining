@@ -55,8 +55,9 @@ public class CreateTask extends HttpServlet {
 
 		// 次回掃除予定日までの日数を取得
 		CalendarLogic cl=new CalendarLogic();
-		int status=cl.Status(day,period,updated);
-
+		int status=cl.Status(day,period);
+System.out.println(day);
+System.out.println(period);
 		// タスクの登録
 		Task task=new Task(name,day,period,room_id,updated,status);
 		TaskDAO dao=new TaskDAO();
