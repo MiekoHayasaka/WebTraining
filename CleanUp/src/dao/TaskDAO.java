@@ -102,12 +102,13 @@ public class TaskDAO {
 	public void insertOne(Task task) {
 		try {
 			this.connect();
-			ps=db.prepareStatement("INSERT INTO tasks(name,day,period,room_id,updated) VALUES(?,?,?,?,?)");
+			ps=db.prepareStatement("INSERT INTO tasks(name,day,period,room_id,updated,status) VALUES(?,?,?,?,?,?)");
 			ps.setString(1, task.getName());
 			ps.setInt(2, task.getDay());
 			ps.setString(3, task.getPeriod());
 			ps.setInt(4, task.getRoom_id());
 			ps.setDate(5, task.getUpdated());
+			ps.setInt(6, task.getStatus());
 			ps.executeUpdate();
 		} catch (NamingException e) {
 			e.printStackTrace();

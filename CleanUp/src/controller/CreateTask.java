@@ -1,7 +1,7 @@
 package controller;
 
 import java.io.IOException;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -46,18 +46,19 @@ public class CreateTask extends HttpServlet {
 		String s_day=request.getParameter("day");
 		int day=Integer.parseInt(s_day);
 		String period=request.getParameter("period");
+		String s_updated = request.getParameter("updated");
 		String s_room_id=request.getParameter("room_id");
 		int room_id=Integer.parseInt(s_room_id);
 
 		// 今日の日付を取得
-		Date udate=new Date();
-		java.sql.Date updated = new java.sql.Date(udate.getTime());
+		//Date udate=new Date();
+		//java.sql.Date updated = new java.sql.Date(udate.getTime());
 
 		// 次回掃除予定日までの日数を取得
+		Date updated = Date.valueOf(s_updated);
 		CalendarLogic cl=new CalendarLogic();
-		int status=cl.Status(day,period);
-System.out.println(day);
-System.out.println(period);
+		int status=cl.Status(day,period,updated);
+
 		// タスクの登録
 		Task task=new Task(name,day,period,room_id,updated,status);
 		TaskDAO dao=new TaskDAO();

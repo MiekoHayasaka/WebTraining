@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"  import="java.util.*,model.*"%>
 <%
 	List<Room> list = (List<Room>)request.getAttribute("list");
-	//Room room=(Room)request.getAttribute("room");
+	Date udate=new Date();
+	java.sql.Date updated = new java.sql.Date(udate.getTime());
 %>
 
 <!DOCTYPE html>
@@ -30,30 +31,34 @@
         <a href="">過去の記録</a>
     </nav>
     <div role="main">
-<p>セレクトメニューから場所を選択、または、テキストボックスに掃除エリアを入力してください。</p>
+<h2>掃除場所登録</h2>
 <form action="/CleanUp/Create" method="post">
-お掃除場所：<select name="name">
-<option value="">選択してください</option>
+<table class="form-table">
+<tr>
+<th>掃除場所の入力</th>
+<td>
+<input type="text" name="name" list="room">
+<datalist id="room">
 <option value="リビング">リビング</option>
 <option value="ダイニング">ダイニング</option>
 <option value="キッチン">キッチン</option>
 <option value="寝室">寝室</option>
-<option value="バスルール">バスルール</option>
+<option value="バスルール">バスルーム</option>
 <option value="トイレ">トイレ</option>
 <option value="玄関">玄関</option>
 <option value="ベランダ">ベランダ</option>
-</select>
-<input type="text" name="name" size=30 placeholder="セレクトメニューにない場所の入力">
-<button type="submit">部屋・エリア登録</button>
+</datalist>
+</td></tr>
+<tr><td></td><td><button type="submit">部屋・エリア登録</button></td></tr>
+</table>
 </form>
 
-<hr>
+<h2>タスク登録</h2>
 <% if(list != null && list.size() > 0){ %>
-<table>
-<thead>
-<tr><th>お掃除場所</th><th>タスクの追加</th><th></th></tr>
-</thead>
-<tbody>
+<table class="list-table">
+
+<tr><th>掃除場所</th><th>タスクの追加</th><th>掃除間隔</th><th>最後に掃除した日</th><th></th></tr>
+
 <%for(Room r:list){ %>
 <form action="/CleanUp/CreateTask" method="post">
 <input type="hidden" name="room_id" value="<%=r.getId() %>">
@@ -61,19 +66,20 @@
 <tr>
 <td><a href="/CleanUp/CreateTask?room_id=<%=r.getId()%>&rname=<%=r.getName()%>">
 <%=r.getName() %></a></td>
-<td><input type="text" name="name" size=30 placeholder="タスクの入力">
-<input type="number" name="day" min="1" max="31" placeholder="日数">
+<td><input type="text" name="name" size=30 placeholder="例：床掃除"></td>
+<td><input type="number" name="day" min="1" max="31" placeholder="日数">
 <select name="period">
 <option value="日">日</option>
 <option value="週">週</option>
 <option value="ケ月">ケ月</option>
 <option value="年">年</option>
 </select>毎</td>
+<td><input type="date" name="updated" value="<%=updated%>"></td>
 <td><button type="submit">登録</button></td>
 </tr>
 </form>
 <%} %>
-</tbody>
+
 </table>
 <%} %>
 </div>

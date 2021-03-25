@@ -1,9 +1,6 @@
 html {
   font-size: calc(100% + 0.4vw);
 }
-body{
-  color:#333;
-}
 #right{
 	  text-align: right;
 }
@@ -15,16 +12,16 @@ header{
   background-size:cover;
 }
 header h1{
-	padding:20px;
+  padding:20px;
   font-size: 3rem;
   text-align: left;
   line-height: 15vh;
-	color:#228b22;
+  color:#228b22;
 }
 nav{
-		padding:5px;
-	  background:#228b22;
-	  display: flex;
+	padding:5px;
+	background:#228b22;
+	display: flex;
 }
 nav a{
   display: block;
@@ -54,43 +51,79 @@ nav ul li a{
 
 /*属性セレクタ*/
 div[role=main]{
-  background:#f0fff0;
+ /* background:#f0fff0;*/
   padding:3vh 3vw 8vh;
   line-height: 1.8;
 }
-h2{
+h2,h3{
+  width:400px;
+  background: #3cb371;
   text-align: center;
+  border-radius:20px;
+  color:white;
   font-size:1.5rem;
-  margin-top:30px;
+  margin:30px auto 10px;
 }
-/*隣接セレクタ(h2の次にあるp)*/
+/*隣接セレクタ(h2のあるp)*/
 h2 + p{
   width:95%;
   margin:0 auto 20px;
   text-align: center;
 }
+/*
 h3{
-	text-align: center;
+  text-align: center;
   font-size:1rem;
-
 }
-
-
-table{
-  width:90%;
-  margin:0 auto;
+*/
+table {
+  width: 100%;
   border-collapse: collapse;
+  margin:0 auto;
 }
-table *{
-  border:1px solid #ddd;text-align: center;
+table th,td{
+  border-top: 1px solid #aaeaad;
+  border-bottom: 1px solid #aaeaad;
+  padding: 0.6em;
 }
-table thead tr{
+/*入力フォームのデザイン*/
+.form-table {
+  width: 100%;
+}
+
+.form-table th,
+.form-table td {
+  border-top: 1px solid #aaeaad;
+  border-bottom: 1px solid #aaeaad;
+  padding: 0.6em;
+}
+
+.form-table th {
+  background: #f0fff0;
+  position: relative;
+  text-align: right;
+  width: 30%;
+}
+.form-table tr:last-chile{
+	background: #ffffff;
+	border-bottom: none;
+}
+
+/*一覧表示のデザイン*/
+.list-table *{
+  /*border:1px solid #aaeaad;*/
+  text-align: center;
+}
+.list-table th{
   background:#3cb371;
   color:white;
 }
-table tbody tr:nth-child(even){
-  background-color: #ffffff;
+.list-table tr:nth-child(even){
+/*.list-table tbody tr:nth-child(odd){*/
+  background-color: #f0fff0;
 }
+
+
 
 #infoBox{
    display: flex;
@@ -102,7 +135,7 @@ table tbody tr:nth-child(even){
   border-radius:5px;
   border:1px solid #3cb371;
   margin:20px 10px;
-  background:white;
+  background:#f0fff0;
 }
 
 #infoBox .info h3{

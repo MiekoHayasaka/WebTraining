@@ -3,6 +3,9 @@
 <%
 	List<Task> list = (List<Task>)request.getAttribute("list");
 	Room room=(Room)request.getAttribute("room");
+	Date udate=new Date();
+	java.sql.Date updated = new java.sql.Date(udate.getTime());
+	int i=0;
 %>
 <!DOCTYPE html>
 <html>
@@ -29,28 +32,38 @@
         <a href="">過去の記録</a>
     </nav>
     <div role="main">
-<h3>【 場所：<%=room.getName() %> 】</h3>
+<h2>場所：<%=room.getName() %> </h2>
 <form action="/CleanUp/CreateTask" method="post">
 <input type="hidden" name="room_id" value="<%=room.getId() %>">
 <input type="hidden" name="rname" value="<%=room.getName() %>">
-<input type="text" name="name" size=30 placeholder="タスクの入力">
-<input type="number" name="day" min="1" max="31" placeholder="日数">
+<table class="form-table">
+<tr>
+<th>タスク</th>
+<td><input type="text" name="name" placeholder="例：鏡磨き"></td>
+</tr>
+<tr>
+<th>掃除の間隔</th>
+<td><input type="number" name="day" min="1" max="31" placeholder="日数">
 <select name="period">
 <option value="日">日</option>
 <option value="週">週</option>
 <option value="ケ月">ケ月</option>
 <option value="年">年</option>
-</select>毎
-<button type="submit">タスク登録</button>
+</select>毎</td>
+</tr>
+<tr><th>最後に掃除した日</th>
+<td><input type="date" name="updated" value="<%=updated%>"></td>
+</tr>
+<tr><th ></th>
+<td><button type="submit">タスク登録</button></td></tr>
+</table>
 </form>
-<hr>
-<h3>今の状態</h3>
+
+<h2>今の状態</h2>
 <% if(list != null && list.size() > 0){ %>
-<table>
-<thead>
-<tr><th>タスク</th><th>掃除の間隔</th><th>予定日まで</th><th>掃除完了</th><th>更新</th><th>削除</th></tr>
-</thead>
-<tbody>
+<table class="list-table">
+<tr><th>タスク</th><th>掃除の間隔</th><th>予定日まで</th><th>掃除完了</th><th>更新</th><th>削除</th>
+</tr>
 <%for(Task t:list){ %>
 <form action="/CleanUp/Complete" method="post">
 <input type="hidden" name="id" value="<%=t.getId()%>">
@@ -65,7 +78,7 @@
 </td>
 </tr>
 <%} %>
-</tbody>
+
 </table>
 <%}else{ %>
 <p>まだタスクの登録はされていません</p>
