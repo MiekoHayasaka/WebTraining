@@ -31,7 +31,7 @@
         <a href="">過去の記録</a>
     </nav>
     <div role="main">
-<h2>掃除場所登録</h2>
+<h2>部屋・エリア登録</h2>
 <form action="/CleanUp/Create" method="post">
 <table class="form-table">
 <tr>
@@ -56,9 +56,7 @@
 <h2>タスク登録</h2>
 <% if(list != null && list.size() > 0){ %>
 <table class="list-table">
-
 <tr><th>掃除場所</th><th>タスクの追加</th><th>掃除間隔</th><th>最後に掃除した日</th><th></th></tr>
-
 <%for(Room r:list){ %>
 <form action="/CleanUp/CreateTask" method="post">
 <input type="hidden" name="room_id" value="<%=r.getId() %>">
@@ -79,7 +77,6 @@
 </tr>
 </form>
 <%} %>
-
 </table>
 <%} %>
 </div>
