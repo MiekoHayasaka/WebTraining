@@ -1,18 +1,37 @@
 html {
-  font-size: calc(100% + 0.4vw);
+  /*font-size: calc(100% + 0.4vw);*/
 }
 #right{
-	  text-align: right;
+	text-align: right;
 }
-
+#center{
+  margin:0 auto;
+  text-align: center;
+}
+#red{
+	background:#ff8080;
+	color:white;
+}
+#yellow{
+	background:#ffff80
+}
+#green{
+	background: #f0fff0;
+}
+#pink{
+	background: #ffe3e3;
+}
+#blue{
+	background: #d5ffff;
+}
 header{
-  height:30vh;
+  height:25vh;
   padding:10px 0;
   background-image:url(../images/item.jpg);
   background-size:cover;
 }
 header h1{
-  padding:20px;
+  padding:25px;
   font-size: 3rem;
   text-align: left;
   line-height: 15vh;
@@ -55,12 +74,12 @@ div[role=main]{
   padding:3vh 3vw 8vh;
   line-height: 1.8;
 }
-h2,h3{
-  width:400px;
+h2{
+  width:95%;
   padding-left:20px;
   border-left:5px solid #3cb371;
   font-size:1.5rem;
-  border-bottom:2px solid #3cb371;
+  /*border-bottom:2px solid #3cb371;*/
 }
 /*隣接セレクタ(h2のあるp)*/
 h2 + p{
@@ -74,25 +93,23 @@ h3{
   font-size:1rem;
 }
 */
+
 table {
   width: 100%;
   border-collapse: collapse;
   margin:0 auto;
 }
-table th,td{
-  border-top: 1px solid #aaeaad;
-  border-bottom: 1px solid #aaeaad;
-  padding: 0.6em;
+
+h3 a{
+  /*background:#3cb371;*/
+  color:white;
 }
 /*入力フォームのデザイン*/
-.form-table {
-  width: 100%;
-}
 
 .form-table th,
 .form-table td {
   border-top: 1px solid #aaeaad;
-  border-bottom: 1px solid #aaeaad;
+  /*border-bottom: 1px solid #aaeaad;*/
   padding: 0.6em;
 }
 
@@ -108,20 +125,35 @@ table th,td{
 }
 
 /*一覧表示のデザイン*/
+
 .list-table *{
-  /*border:1px solid #aaeaad;*/
   text-align: center;
 }
 .list-table th{
   background:#3cb371;
   color:white;
+  padding: 0.6em;
+  position: relative;
 }
+.list-table th a{
+  background:#3cb371;
+  color:white;
+}
+.list-table td {
+  border-top: 1px solid #aaeaad;
+  border-bottom: 1px solid #aaeaad;
+  padding: 0.6em;
+}
+/*
 .list-table tr:nth-child(even){
-/*.list-table tbody tr:nth-child(odd){*/
+.list-table tbody tr:nth-child(odd){
   background-color: #f0fff0;
 }
+*/
 
-
+#wrapper{
+	padding:2vh 2vw;
+}
 
 #infoBox{
    display: flex;

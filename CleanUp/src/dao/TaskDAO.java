@@ -43,13 +43,13 @@ public class TaskDAO {
 			e.printStackTrace();
 		}
 	}
-/*
+
+	// タスクの一覧表示
 	public List<Task> findAll(){
 		List<Task> list = new ArrayList<>();
 		try {
 			this.connect();
-			//ps=db.prepareStatement("SELECT * FROM tasks WHERE room_id=? ");
-			ps=db.prepareStatement("SELECT * FROM tasks");
+			ps=db.prepareStatement("SELECT * FROM tasks ORDER BY status");
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				int id = rs.getInt("id");
@@ -58,9 +58,10 @@ public class TaskDAO {
 				String period = rs.getString("period");
 				int room_id = rs.getInt("room_id");
 				Date updated = rs.getDate("updated");
+				int status = rs.getInt("status");
 				//int season = rs.getInt("season");
 				//int importance = rs.getInt("importance");
-				Task task = new Task(id,name,day,period,room_id,updated);
+				Task task = new Task(id,name,day,period,room_id,updated,status);
 				list.add(task);
 			}
 		} catch (NamingException | SQLException e) {
@@ -70,13 +71,13 @@ public class TaskDAO {
 		}
 		return list;
 	}
-*/
+
 	// タスクの一覧表示（場所毎）
 	public List<Task> findRoom(int room_id){
 		List<Task> list = new ArrayList<>();
 		try {
 			this.connect();
-			ps=db.prepareStatement("SELECT * FROM tasks WHERE room_id=? ");
+			ps=db.prepareStatement("SELECT * FROM tasks WHERE room_id=? ORDER BY status");
 			ps.setInt(1, room_id);
 			rs=ps.executeQuery();
 			while(rs.next()) {
@@ -162,7 +163,7 @@ public class TaskDAO {
 	}
 
 	// 掃除完了時のタスク更新
-	public void updateStatus(Task task) {
+	public void updateDate(Task task) {
 		try {
 			this.connect();
 			ps=db.prepareStatement("UPDATE tasks SET updated=?, status=? WHERE id=?");
@@ -177,6 +178,20 @@ public class TaskDAO {
 		}
 	}
 
+	// ステータスの更新
+	public void updateStatus(Task task) {
+		try {
+			this.connect();
+			ps=db.prepareStatement("UPDATE tasks SET status=? WHERE id=?");
+			ps.setInt(1, task.getStatus());
+			ps.setInt(2, task.getId());
+			ps.executeUpdate();
+		} catch (NamingException | SQLException e) {
+			e.printStackTrace();
+		}finally {
+			this.disconnect();
+		}
+	}
 	public void deleteOne(int id) {
 		try {
 			this.connect();

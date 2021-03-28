@@ -5,7 +5,6 @@
 	Room room=(Room)request.getAttribute("room");
 	Date udate=new Date();
 	java.sql.Date updated = new java.sql.Date(udate.getTime());
-	int i=0;
 %>
 <!DOCTYPE html>
 <html>
@@ -25,13 +24,11 @@
       <h1>キレイなお家</h1>
     </header>
     <nav>
-        <a href="index.jsp">つかい方</a>
+        <a href="clean.jsp">つかい方</a>
         <a href="/CleanUp/Create">おそうじ登録</a>
-        <a href="">一覧表示</a>
-        <a href="">完了・編集</a>
-        <a href="">過去の記録</a>
+        <a href="/CleanUp/Read">一覧表示</a>
     </nav>
-    <div role="main">
+<div role="main">
 <h2>場所：<%=room.getName() %> </h2>
 <form action="/CleanUp/CreateTask" method="post">
 <input type="hidden" name="room_id" value="<%=room.getId() %>">
@@ -54,12 +51,13 @@
 <tr><th>最後に掃除した日</th>
 <td><input type="date" name="updated" value="<%=updated%>"></td>
 </tr>
-<tr><th ></th>
+<tr><td></td>
 <td><button type="submit">タスク登録</button></td></tr>
 </table>
 </form>
 
-<h2>今の状態</h2>
+<h2><%=room.getName() %>の状態</h2>
+<div id="wrapper">
 <% if(list != null && list.size() > 0){ %>
 <table class="list-table">
 <tr><th>タスク</th><th>掃除の間隔</th><th>予定日まで</th><th>掃除完了</th><th>更新</th><th>削除</th>
@@ -68,24 +66,30 @@
 <form action="/CleanUp/Complete" method="post">
 <input type="hidden" name="id" value="<%=t.getId()%>">
 <input type="hidden" name="room_id" value="<%=room.getId()%>">
-<tr><td><%=t.getName() %></td>
+<tr><td id="green"><%=t.getName() %></td>
 <td><%=t.getDay() %> <%=t.getPeriod() %>毎</td>
-<td><%=t.getStatus()%> 日</td>
-<td><button type="submit">完了！</button></td>
+<% if(t.getStatus()<0){ %>
+<td id="red"><%=t.getStatus()%> 日</td>
+<%}else if(t.getStatus()==0){ %>
+<td id="yellow"><%=t.getStatus()%> 日</td>
+<%}else { %>
+<td id="blue"><%=t.getStatus()%> 日</td>
+<%} %>
+<td><button type="submit"  onclick="return alert('頑張りましたね！お疲れさまでした。');">完了！</button></td>
 </form>
 <td><a href="/CleanUp/Update?id=<%=t.getId() %>&room_id=<%=room.getId()%>">更新</a></td>
 <td><a href="/CleanUp/Delete?id=<%=t.getId() %>&room_id=<%=room.getId()%>&rname=<%=room.getName()%>" onclick="return confirm('[<%=t.getName()%>]を削除してよろしいですか？');">削除</a>
 </td>
 </tr>
 <%} %>
-
 </table>
 <%}else{ %>
 <p>まだタスクの登録はされていません</p>
 <%} %>
 </div>
+</div>
     <footer>
-      &copy;CleanUpProject
+      &copy;CleanHouseProject
     </footer>
   </div>
 </body>

@@ -69,32 +69,29 @@ public class CalendarLogic  implements Serializable{
 				status=(int)t_diff;
 
 				// 次回掃除予定日
-				Calendar next = Calendar.getInstance();
+				//Calendar next = Calendar.getInstance();
 				String period=t.getPeriod();
 				int day=t.getDay();
+
 				if(period.equals("日")) {
-					next.add(Calendar.DAY_OF_MONTH, day);
+					last.add(Calendar.DAY_OF_MONTH, day);
 				}else if(period.equals("週")) {
-					next.add(Calendar.WEEK_OF_YEAR, day);
+					last.add(Calendar.WEEK_OF_YEAR, day);
 				}else if(period.equals("ケ月")) {
-					next.add(Calendar.MONTH,day);
+					last.add(Calendar.MONTH,day);
 				}else {
-					next.add(Calendar.YEAR, day);
+					last.add(Calendar.YEAR, day);
 				}
 
 				//次回掃除予定日 - 最後に掃除した日
-				long nextMillis = next.getTimeInMillis();
+				long nextMillis = last.getTimeInMillis();
 				long diff = (nextMillis - lastMillis) / 1000 / 60 / 60 / 24;
 				status +=(int)diff;
 
 				// ステータスを更新
 				int id=t.getId();
-				t.setId(id);
-				t.setStatus(status);
-				t.setRoom_id(room_id);
-				//Task task=new Task(id,day,period,status);
-				//dao.updateStatus(task);
-
+				Task task=new Task(id,status);
+				dao.updateStatus(task);
 			}
 		}
 

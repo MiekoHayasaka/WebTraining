@@ -9,14 +9,34 @@ Task task=(Task)request.getAttribute("task");
 <head>
 <meta charset="UTF-8">
 <title>キレイなお家</title>
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
+  <link rel="stylesheet" href="css/main.css"/>
 </head>
 <body>
-<a href="/CleanUp/CreateTask?room_id=<%=room.getId()%>&rname=<%=room.getName()%>">タスク一覧</a><br>
-<p>タスクの更新を行います。</p>
+  <div class="container">
+  <div id="right">
+		<a href="login.jsp">ログイン</a>
+		<a href="signup.jsp">新規登録</a>
+		</div>
+    <header>
+      <h1>キレイなお家</h1>
+    </header>
+    <nav>
+        <a href="clean.jsp">つかい方</a>
+        <a href="/CleanUp/Create">おそうじ登録</a>
+        <a href="/CleanUp/Read">一覧表示</a>
+    </nav>
+<div role="main">
+<h2><%=room.getName() %>のタスク更新</h2>
 <form action="/CleanUp/Update" method="post">
-<p>【 場所： <%=room.getName() %> 】</p>
-タスク名:<input type="text" name="name" value="<%=task.getName() %>">
-<input type="number" name="day" value="<%=task.getDay() %>">
+<table class="form-table">
+<tr>
+<th>タスク</th>
+<td><input type="text" name="name" value="<%=task.getName() %>"></td>
+</tr>
+<tr>
+<th>掃除の間隔</th>
+<td><input type="number" name="day" min="1" max="31" value="<%=task.getDay() %>">
 <select name="period">
 <% switch(task.getPeriod()){
 case "日":%>
@@ -43,13 +63,22 @@ case "年": %>
 <option value="ケ月">カ月</option>
 <option value="年" selected>年</option>
 <% break;}%>
-</select>毎
+</select> 毎</td>
+</tr>
+<tr><td>
 <input type="hidden" name="id" value="<%=task.getId() %>">
-<input type="hidden" name="updated" value="<%=task.getUpdated() %>">
-<input type="hidden" name="status" value="<%=task.getStatus() %>">
 <input type="hidden" name="room_id" value="<%=room.getId() %>">
 <input type="hidden" name="rname" value="<%=room.getName() %>">
-<button type="submit">更新</button>
+</td>
+<td><button type="submit">タスク更新</button></td>
+</tr>
+</table>
 </form>
+</div>
+<br><br><br>
+    <footer>
+      &copy;CleanHouseProject
+    </footer>
+</div>
 </body>
 </html>

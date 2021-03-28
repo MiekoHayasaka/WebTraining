@@ -119,7 +119,7 @@ public class RoomDAO {
 	public void deleteOne(int id) {
 		try {
 			this.connect();
-			ps=db.prepareStatement("DELETE FROM rooms WHERE id=?");
+			ps=db.prepareStatement("DELETE rooms,tasks FROM rooms LEFT JOIN tasks ON rooms.id=tasks.room_id WHERE rooms.id=?");
 			ps.setInt(1, id);
 			ps.execute();
 		} catch (NamingException | SQLException e) {

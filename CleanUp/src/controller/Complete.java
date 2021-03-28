@@ -35,19 +35,17 @@ public class Complete extends HttpServlet {
 		Task task=dao.findOne(Integer.parseInt(id));
 		int day=task.getDay();
 		String period=task.getPeriod();
-		//java.sql.Date updated=task.getUpdated();
 
 		// 今日の日付を取得
 		Date udate=new Date();
 		java.sql.Date updated = new java.sql.Date(udate.getTime());
 
-		// ステータスの更新
+		// 掃除完了日・ステータスの更新
 		CalendarLogic cl=new CalendarLogic();
 		int status=cl.Status(day,period,updated);
 		task.setStatus(status);
-		//task.setStatus(4);
 		task.setUpdated(updated);
-		dao.updateStatus(task);
+		dao.updateDate(task);
 
 		// 掃除場所の取得
 		String room_id=request.getParameter("room_id");

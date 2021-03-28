@@ -67,13 +67,15 @@ public class Update extends HttpServlet {
 		dao.updateOne(task);
 
 		// 更新した掃除場所の取得
-		String room_id=request.getParameter("room_id");
+		String s_room_id=request.getParameter("room_id");
+		int room_id=Integer.parseInt(s_room_id);
 		String rname=request.getParameter("rname");
-		Room room=new Room(Integer.parseInt(room_id),rname);
-		request.setAttribute("room", room);
 
+		Room room = new Room(room_id,rname);
+		request.setAttribute("room", room);
+System.out.println(room_id);
 		// タスクの一覧表示
-		List<Task> list=dao.findRoom(Integer.parseInt(room_id));
+		List<Task> list=dao.findRoom(room_id);
 		request.setAttribute("list", list);
 		RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/view/read.jsp");
 		rd.forward(request, response);

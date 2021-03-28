@@ -18,7 +18,12 @@ public class Task implements Serializable{
 
 	public Task() {}
 
-	// 登録時
+	// ステータス更新
+	public Task(int id,int status) {
+		this.id=id;
+		this.status=status;
+	}
+	// 登録
 	public Task(String name,int day,String period,int room_id, Date updated,int status) {
 		this.name=name;
 		this.day=day;
@@ -32,13 +37,12 @@ public class Task implements Serializable{
 		this(name,day,period,room_id,updated,status);
 		this.id=id;
 	}
-	// 更新時
+	// 更新
 	public Task(int id,String name,int day,String period,int status) {
-		this.id=id;
+		this(id,status);
 		this.name=name;
 		this.day=day;
 		this.period=period;
-		this.status=status;
 	}
 
 	public int getId() {

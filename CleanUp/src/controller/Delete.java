@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.RoomDAO;
 import dao.TaskDAO;
 import model.Room;
 import model.Task;
@@ -47,7 +48,14 @@ public class Delete extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		// ルームの削除
+		String room_id=request.getParameter("room_id");
+		RoomDAO dao = new RoomDAO();
+		if(room_id != null){
+			dao.deleteOne(Integer.parseInt(room_id));
+		}
+
+		response.sendRedirect("/CleanUp/Create");
 	}
 
 }
