@@ -1,8 +1,11 @@
 html {
-  /*font-size: calc(100% + 0.4vw);*/
+  font-size: calc(100% + 0.4vw);
 }
 #right{
 	text-align: right;
+}
+#left{
+	text-align: left;
 }
 #center{
   margin:0 auto;
@@ -73,6 +76,11 @@ div[role=main]{
  /* background:#f0fff0;*/
   padding:3vh 3vw 8vh;
   line-height: 1.8;
+}
+h1{
+  font-size: 2rem;
+  margin:0 auto;
+  text-align: center;
 }
 h2{
   width:95%;

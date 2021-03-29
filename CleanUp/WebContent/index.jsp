@@ -11,14 +11,14 @@
 <body>
   <div class="container">
   <div id="right">
-		<a href="login.jsp">ログイン</a>
-		<a href="signup.jsp">新規登録</a>
+		<a href="">ログイン</a>
+		<a href="">新規登録</a>
 		</div>
     <header>
       <h1>キレイなお家</h1>
     </header>
     <nav>
-        <a href="clean.jsp">つかい方</a>
+        <a href="index.jsp">つかい方</a>
         <a href="/CleanUp/Create">おそうじ登録</a>
         <a href="/CleanUp/Read">一覧表示</a>
     </nav>

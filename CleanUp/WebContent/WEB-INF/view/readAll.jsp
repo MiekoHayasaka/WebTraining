@@ -15,14 +15,14 @@
 <body>
   <div class="container">
   <div id="right">
-		<a href="login.jsp">ログイン</a>
-		<a href="signup.jsp">新規登録</a>
+		<a href="">ログイン</a>
+		<a href="">新規登録</a>
   </div>
   <header>
 	<h1>キレイなお家</h1>
   </header>
    <nav>
-        <a href="clean.jsp">つかい方</a>
+        <a href="index.jsp">つかい方</a>
         <a href="/CleanUp/Create">おそうじ登録</a>
         <a href="/CleanUp/Read">一覧表示</a>
    </nav>
@@ -35,7 +35,7 @@
 <tr><th><a href="/CleanUp/CreateTask?room_id=<%=r.getId()%>&rname=<%=r.getName()%>">
 <h3><%=r.getName() %></h3></th>
 <th><input type="hidden" name="room_id" value="<%=r.getId()%>"></thd>
-<th></th><th></th><th></th>
+<th></th><th></th>
 </tr>
 <tr><td>タスク</td><td>掃除の間隔</td><td>予定日まで</td><td>掃除完了</td>
 </tr>

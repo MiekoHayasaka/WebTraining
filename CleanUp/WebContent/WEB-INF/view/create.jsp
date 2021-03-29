@@ -17,14 +17,14 @@
 <body>
   <div class="container">
   <div id="right">
-		<a href="login.jsp">ログイン</a>
-		<a href="signup.jsp">新規登録</a>
+		<a href="">ログイン</a>
+		<a href="">新規登録</a>
 		</div>
     <header>
       <h1>キレイなお家</h1>
     </header>
     <nav>
-        <a href="clean.jsp">つかい方</a>
+        <a href="index.jsp">つかい方</a>
         <a href="/CleanUp/Create">おそうじ登録</a>
         <a href="/CleanUp/Read">一覧表示</a>
     </nav>
@@ -71,7 +71,7 @@
 <form action="/CleanUp/CreateTask" method="post">
 <tr>
 <th>タスクの追加</th>
-<td><input type="text" name="name" size=30 placeholder="例：床掃除"></td>
+<td><input type="text" name="name" placeholder="例：床掃除"></td>
 </tr>
 <tr>
 <th>掃除間隔</th>
